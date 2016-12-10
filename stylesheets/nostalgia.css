@@ -1,0 +1,38 @@
+.starry {
+	background-image: url("/images/bg_stars.gif");
+	background-color: #000000;
+	color: #ff0000;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 18px;
+}
+
+a:link { 
+	color: #ff4c4c; 
+}
+
+a:visited { 
+	color: #ff4c4c; 
+}
+
+a:active { 
+	color: #ff4c4c;
+}
+
+.gallerypic {
+	height: 150px;
+	width: 150px;
+}
+
+.icon {
+	width: 134px;
+	height: 114px; 
+	border: 0px;
+}
+
+.input {
+    border: 1px solid #006;
+}
+
+.img-responsive {
+    margin: 0 auto;
+}

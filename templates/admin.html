@@ -1,0 +1,35 @@
+<DOCTYPE! html>
+<html>
+	<head>
+		<link type="text/css" href="/stylesheets/nostalgia.css" rel="Stylesheet" />
+		<title>ADMIN</title>
+	</head>
+	
+	<body>
+		<br><br>
+		<center>
+		
+			<br><br>
+			<hr width="75%"></hr>
+			<!-- the % sign is used by jinja to differentiate b/w python from html -->
+			<!-- the code b/w the for loop is executed on each iteration-->
+			<br>
+			{% for pic in pics %}
+			<a href="{{pic.link}}"> 
+				<img  class="gallerypic" vspace="5" hspace="5" src="{{pic.link}}"></img> 
+			</a>
+			<div>{{pic.link}}<br>{{pic.category}}</div>
+			{% endfor %}
+			<br><br>
+			<form method="post">
+				<label>
+					<div>Enter the full image url here:</div>
+					<div>Category:Link</div>
+					<input type="text" name="submission">
+				</label>
+				<input type="submit" value="Submit!">
+			</form>
+		</center>
+	</body>
+	<center><a href="/">Home</a><center> 
+</html>

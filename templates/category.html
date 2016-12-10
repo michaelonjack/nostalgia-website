@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>NT! - {{category}}</title>
+
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" type="text/css" href="/stylesheets/nostalgia.css">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/bootstrap.min.css">
+	<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+</head>
+<body class="starry">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-md-12" style="margin:60px 0px 40px 0px;">
+				<img class="img-responsive" src="/images/{{category}}banner.gif" border="0" alt="gif maker">
+				<marquee style="font-size:125%">{{category}}!</marquee>
+				<hr width="75%"></hr>
+			</div>
+		</div>
+		<div class="row"  style="margin:30px 0px 0px 0px;">
+			<div class="col-xs-1 col-md-1"></div>
+				<!-- j is the starting index where this page's images begin -->
+				{% set j=1+(currentPage-1)*25 %}
+				<!-- i is a generic counter incremented for every picture -->
+				{% set i=1 %}
+				
+				<!-- for loop to iterate through all pictures for this category -->
+				{% for pic in pics %}
+				<!-- only display images if i is less than the upper bound for this page -->
+					{% if i<(j+25) and i>=j %}
+						<div class="col-xs-2 col-md-2">
+							<a href="#" class="pop"><img id="nost-pic-{{i}}" class="gallerypic" src="{{pic.link}}""></a>
+
+							<!-- Creates the bootstrap modal where the image will appear -->
+							<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							        <center>
+							        	<a id="imagelink" href=""><h4class="modal-title" id="myModalLabel">LINK</h4></a>
+							        </center>
+							      </div>
+							      <div class="modal-body">
+							      	<center>
+							        	<img src="" id="imagepreview" style="max-width: 500px;" >
+							        </center>
+							      </div>
+							      <div class="modal-footer">
+							      	<center>
+							        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							        </center>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+						</div>
+
+						<script type="text/javascript">
+							$(".pop").on("click", function() {
+								// here asign the image to the modal when the user click the enlarge link
+   								$('#imagepreview').attr('src', $(this).find('img').attr('src')); 
+   								// imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+   								$('#imagemodal').modal('show'); 
+   								$('#imagelink').attr('href', $(this).find('img').attr('src'));
+							});
+						</script>
+
+						{% if i%5==0 %}
+							<div class="col-xs-1 col-md-1"></div>
+							</div> <!-- End the row -->
+							<div class="row" style="margin:30px 0px 0px 0px;">
+							<div class="col-xs-1 col-md-1"></div>
+						{% endif %}
+				
+					{% endif %}
+					
+					{% set i=i+1 %}
+					
+				{% endfor %}
+				<div class="col-xs-1 col-md-1"></div>
+				</div> <!-- End the row -->
+
+		<br><br>
+		<div class="row">
+			<div class="col-xs-12 col-md-12 text-center">
+				Pages: 
+				{% for i in range(1,numPages+1) %}
+				<a href="http://nostalgic-thirst.com/{{category}}?page={{i}}">{{i}}</a>&nbsp;
+				{% endfor %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 col-md-4"></div>
+			<div class="col-xs-4 col-md-4 text-center">
+				<form method="post">
+					<div class="form-group">
+						<label for="userSubmission">Enter the full image url here: </label>
+						<input type="text" class="form-control" name="img_link" id="userSubmission">
+					</div>
+					<button type="submit" class="btn btn-default">Submit!</button>
+				</form>
+			</div>
+			<div class="col-xs-4 col-md-4"></div>
+		</div>
+	</div>
+</body>
+<footer>
+	<br><br>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-md-12 text-center">
+				Navigate the site!
+			</div>
+			<div class="col-xs-12 col-md-12 text-center">
+				<a href="/ads?page=1">Ads</a> | <a href="/general?page=1">General</a> | <a href="/">Home</a> | 
+				<a href="/movies?page=1">Movies</a> | <a href="/technology?page=1">Technology</a> | <a href="/television?page=1">Television</a> | <a href="/games?page=1">Video Games</a>
+			</div>
+		</div>
+	</div>
+</footer>
+</html>
